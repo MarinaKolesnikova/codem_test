@@ -26,13 +26,13 @@ jobs:
       - name: Cache Flutter
         uses: actions/cache@v3
         with:
-          path: ~/.flutter
+          path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
           key: flutter-sdk-${{ runner.os }}-3.27.4
           
       - name: Cache pub dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.pub-cache
+          path: /Users/runner/.pub-cache
           key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
             pub-cache-${{ runner.os }}-
@@ -40,7 +40,7 @@ jobs:
       - name: Cache Java
         uses: actions/cache@v3
         with: 
-          path: ~/.gradle/
+          path: /Users/runner/hostedtoolcache/Java_Oracle_jdk/17/arm64/Contents/Home
           key: java-sdk-3.12.0-${{ runner.os }}-17
           
       - name: Set Up Java
