@@ -43,6 +43,10 @@ jobs:
           distribution: 'oracle'
           java-version: '17'
           cache: 'gradle'
+          cache-dependency-path: | 
+            build.gradle
+            settings.gradle
+            **/build.gradle.kts     
           
           
       - name: Set Up Flutter
