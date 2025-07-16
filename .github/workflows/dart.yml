@@ -36,18 +36,13 @@ jobs:
           key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
             pub-cache-${{ runner.os }}-
-
-      - name: Cache Java
-        uses: actions/cache@v3
-        with: 
-          path: /Users/runner/hostedtoolcache/Java_Oracle_jdk/17/arm64/Contents/Home
-          key: java-sdk-3.12.0-${{ runner.os }}-17
           
       - name: Set Up Java
         uses: actions/setup-java@v3.12.0
         with:
           distribution: 'oracle'
           java-version: '17'
+          cache: 'gradle'
           
           
       - name: Set Up Flutter
