@@ -42,7 +42,7 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: '17'
-          cache: 'gradle'
+          cache: 'temurin'
           cache-dependency-path: | 
             build.gradle
             settings.gradle
