@@ -26,14 +26,22 @@ jobs:
       - name: Cache Flutter
         uses: actions/cache@v3
         with:
-          path: ~/.cache/flutter
+          path: ~/.flutter
           key: flutter-sdk-${{ runner.os }}-3.27.4
-    
+          
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            pub-cache-${{ runner.os }}-
+
       - name: Cache Java
-        uses:  action/cache@v4
+        uses: action/cache@v3
         with: 
-          path: ~/.cache/java
-          key: java-sdk-4{{ runner.os }}-17
+          path: ~/.gradle/
+          key: java-sdk-{{ runner.os }}-17
           
       - name: Set Up Java
         uses: actions/setup-java@v3.12.0
@@ -48,8 +56,7 @@ jobs:
         with:
          flutter-version: '3.27.4'
          channel: 'stable'
-         cache-from: type=local, src=~/.cache/flutter
-         cache-to: type=local, src=~/.cache/flutter
+         cache: false
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
