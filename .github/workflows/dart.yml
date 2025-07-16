@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Cache Flutter
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: ~/.cache/flutter
           key: flutter-sdk-${{ runner.os }}-3.27.4
