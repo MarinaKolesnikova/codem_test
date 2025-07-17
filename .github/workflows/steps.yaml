@@ -1,0 +1,8 @@
+name: Git action
+on: workflow_dispatch
+jobs: 
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greetinf
+        run: echo "Hello world"
