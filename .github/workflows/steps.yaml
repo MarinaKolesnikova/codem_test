@@ -26,6 +26,12 @@ jobs:
           flutter-version: '3.27.4'
           channel: 'stable'
           cache: false
+          
+      - name: Pub get
+        run: flutter pub get
+        
+      - name: Flutter test
+        run: flutter test  
          
   second-job:
     runs-on: ubuntu-latest
