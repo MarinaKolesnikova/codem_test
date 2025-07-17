@@ -6,17 +6,18 @@
 name: Dart
 
 on:
-  push:
-    branches:
-      - main
-      - 'feature/**'
-      - 'fix/**'
-  pull_request:
-    branches: 
-      - main
+ #push:
+ workflow_dispatch
+  #   branches:
+  #     - main
+  #     - 'feature/**'
+  #     - 'fix/**'
+  # pull_request:
+  #   branches: 
+  #     - main
 
 jobs:
-  build:
+  test_and_analyze:
     runs-on: macos-latest
 
     steps:
