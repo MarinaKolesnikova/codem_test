@@ -6,15 +6,16 @@
 name: Dart
 
 on:
- #push:
- workflow_dispatch
-  #   branches:
-  #     - main
-  #     - 'feature/**'
-  #     - 'fix/**'
-  # pull_request:
-  #   branches: 
-  #     - main
+
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - 'fix/**'
+  pull_request:
+    branches: 
+      - main
 
 jobs:
   test_and_analyze:
