@@ -2,9 +2,13 @@ name: Evn vars
 on:
    workflow_dispatch:
    issues: 
-      type: 
+     types: 
       - opened 
       - closed
+   pull_request:
+     types:
+      - opened
+      - edited
       
 jobs:
   env-vars:
