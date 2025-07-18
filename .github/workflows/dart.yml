@@ -13,9 +13,11 @@ on:
       - 'feature/**'
       - 'fix/**'
     paths-ignore:  .github/workflows/*
+    
   pull_request:
     branches: 
       - main #target for pull-request
+
 
 jobs:
   test_and_analyze:
