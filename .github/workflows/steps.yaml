@@ -1,0 +1,43 @@
+name: Git action
+on: workflow_dispatch
+jobs: 
+  test-and-analyse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Cache flutter
+        uses: actions/cache@v3
+        with:
+          path: /opt/hostedtoolcache/flutter/stable-3.27.4-x64
+          key: flutter-sdk-${{ runner.os }}-3.27.4
+          
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+         path: /home/runner/.pub-cache
+         key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+         restore-keys: |
+           pub-cache-${{ runner.os }}-
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.4'
+          channel: 'stable'
+          cache: false
+          
+      - name: Pub get
+        run: flutter pub get
+        
+      - name: Flutter test
+        run: flutter test  
+         
+  second-job:
+    needs: test-and-analyse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "scond job"
+        
+          

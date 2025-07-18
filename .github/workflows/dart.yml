@@ -6,32 +6,55 @@
 name: Dart
 
 on:
-  push:
-    branches:
-      - main
-      - features/**
-      - fix/**
-  pull_request:
-    branches: 
-      - main
+ #push:
+ workflow_dispatch
+  #   branches:
+  #     - main
+  #     - 'feature/**'
+  #     - 'fix/**'
+  # pull_request:
+  #   branches: 
+  #     - main
 
 jobs:
-  build:
+  test_and_analyze:
     runs-on: macos-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: Set Up Java
-        uses: actions/setup-java@v3.12.0
+        
+      - name: Cache Flutter
+        uses: actions/cache@v3
         with:
-          distribution: 'oracle'
-          java-version: '17'  
+         path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
+         key: flutter-sdk-${{ runner.os }}-3.27.4
+          
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/.pub-cache
+         key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+         restore-keys: |
+           pub-cache-${{ runner.os }}-
+          
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+         distribution: 'temurin'
+         java-version: '17'
+         cache: 'gradle'
+         cache-dependency-path: |
+          android/build.gradle
+          android/settings.gradle
+          android/gradle/wrapper/gradle-wrapper.properties
+          
       - name: Set Up Flutter
         uses: subosito/flutter-action@v2
         with:
          flutter-version: '3.27.4'
-         channel: 'stable'   
+         channel: 'stable'
+         cache: false
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
