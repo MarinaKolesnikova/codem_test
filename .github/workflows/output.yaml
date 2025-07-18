@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: first var
-        run: echo "${{ toJSON(github.event)['issue']['body'] }}"
+        run: echo "${{ toJSON(github.event) }}"
 
