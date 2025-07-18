@@ -1,0 +1,15 @@
+name: Evn vars
+on:
+   workflow_dispatch:
+   issues: 
+      type: 
+      - opened 
+      - closed
+      
+jobs:
+  env-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: first var
+        run: echo "${{ github.event }}"
+
