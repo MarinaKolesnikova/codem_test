@@ -6,6 +6,9 @@ on:
       - opened 
       - closed
    pull_request:
+     branches:
+     - main
+     - 'feature/**'
      types:
       - opened
       - edited
