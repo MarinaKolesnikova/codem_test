@@ -23,7 +23,7 @@ jobs:
         run: echo "${{ toJSON(github.event) }}"
       - name: get info from file
         id: publish_output_id 
-        run: find ./README.md -type f -execdir echo 'readme-file-first-={}' >> $GITHUB_OUTPUT ';'
+        run: find . -type f -name 'README.md' -execdir echo 'readme-file-first-={}' >> $GITHUB_OUTPUT ';'
    
   another-job-name:
      runs-on: ubuntu-latest
