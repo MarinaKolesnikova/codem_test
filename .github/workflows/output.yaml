@@ -16,7 +16,19 @@ on:
 jobs:
   env-vars:
     runs-on: ubuntu-latest
+    outputs: 
+        readme-file: ${{ steps.publish_output_id.outputs.readme-file-first }}
     steps:
       - name: first var
         run: echo "${{ toJSON(github.event) }}"
+      - name: get info from file
+        id: publish_output_id 
+        run: find README.md -type f -execdir echo 'readme-file-first-={}' >> $GITHUB_OUTPUT ';'
+   
+  another-job-name:
+     runs-on: ubuntu-latest
+     needs: env-vars
+     steps:
+      - name: output file name
+        run: echo ${{ needs.env-vars.outputs.readme-file }}
 
