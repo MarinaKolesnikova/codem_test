@@ -24,11 +24,10 @@ jobs:
       - name: Find and export first README.md
         id: publish_output_id 
         run: |
-           if [ -f README.md ]; then
-           cat README.md
-           else
-           echo "No README.md at repo root"
-           fi
+          pwd
+          cd ios
+          pwd
+           
           # # list them for debug
           # echo "All README.md files:"
           # pwd
