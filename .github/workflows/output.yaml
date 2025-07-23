@@ -27,14 +27,11 @@ jobs:
           
           # list them for debug
           echo "All README.md files:"
-          echo "All README.md files:"
           find . -type f -name 'README.md'
   
-     
-
           # take only the first one
-          file=$( find ./README.md )
-          if [ -n "$file" ]; then
+            file=$(find . -type f -name 'README.md' | head -n1)
+            if [ -n "$file" ]; then
             # strip leading "./" and export
             rel=${file#./}
             echo "readme-file-first=${rel}" >> "$GITHUB_OUTPUT"
