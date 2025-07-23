@@ -21,9 +21,25 @@ jobs:
     steps:
       - name: first var
         run: echo "${{ toJSON(github.event) }}"
-      - name: get info from file
+      - name: Find and export first README.md
         id: publish_output_id 
-        run: find . -type f -name 'README.md' -execdir echo 'readme-file-first={}' >> $GITHUB_OUTPUT ';'
+        run: |
+          # list them for debug
+          echo "All README.md files:"
+          find ./README.md
+
+          # take only the first one
+          file=$( find ./README.md )
+          if [ -n "$file" ]; then
+            # strip leading "./" and export
+            rel=${file#./}
+            echo "readme-file-first=${rel}" >> "$GITHUB_OUTPUT"
+            echo "Exported readme-file-first=${rel}"
+          else
+            echo "No README.md found, skipping export."
+          fi
+        
+  
    
   another-job-name:
      runs-on: ubuntu-latest
