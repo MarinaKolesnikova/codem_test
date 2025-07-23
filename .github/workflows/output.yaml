@@ -25,6 +25,7 @@ jobs:
         id: publish_output_id 
         run: |
           pwd
+          cd ../
           cd ios
           pwd
            
