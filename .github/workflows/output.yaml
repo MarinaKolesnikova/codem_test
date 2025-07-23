@@ -26,7 +26,8 @@ jobs:
         run: |
           # list them for debug
           echo "All README.md files:"
-          find README.md
+          pwd
+          find /README.md
 
           # take only the first one
           file=$( find ./README.md )
