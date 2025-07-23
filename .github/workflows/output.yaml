@@ -24,7 +24,7 @@ jobs:
       - name: Find and export first README.md
         id: publish_output_id 
         run: |
-          find README.md
+          find codem_test/README.md
            
           # # list them for debug
           # echo "All README.md files:"
