@@ -24,21 +24,26 @@ jobs:
       - name: Find and export first README.md
         id: publish_output_id 
         run: |
-          # list them for debug
-          echo "All README.md files:"
-          pwd
-          find /README.md
+           if [ -f README.md ]; then
+           cat README.md
+           else
+           echo "No README.md at repo root"
+           fi
+          # # list them for debug
+          # echo "All README.md files:"
+          # pwd
+          # find /README.md
 
-          # take only the first one
-          file=$( find ./README.md )
-          if [ -n "$file" ]; then
-            # strip leading "./" and export
-            rel=${file#./}
-            echo "readme-file-first=${rel}" >> "$GITHUB_OUTPUT"
-            echo "Exported readme-file-first=${rel}"
-          else
-            echo "No README.md found, skipping export."
-          fi
+          # # take only the first one
+          # file=$( find ./README.md )
+          # if [ -n "$file" ]; then
+          #   # strip leading "./" and export
+          #   rel=${file#./}
+          #   echo "readme-file-first=${rel}" >> "$GITHUB_OUTPUT"
+          #   echo "Exported readme-file-first=${rel}"
+          # else
+          #   echo "No README.md found, skipping export."
+          # fi
         
   
    
