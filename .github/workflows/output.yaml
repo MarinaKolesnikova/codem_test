@@ -24,10 +24,7 @@ jobs:
       - name: Find and export first README.md
         id: publish_output_id 
         run: |
-          pwd
-          cd ../
-          cd ios
-          pwd
+          find README.md
            
           # # list them for debug
           # echo "All README.md files:"
