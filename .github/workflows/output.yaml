@@ -21,16 +21,18 @@ jobs:
     steps:
       - name: first var
         run: echo "${{ toJSON(github.event) }}"
+      - name: checkout project
+        uses: actions/checkout@v4    
       - name: Find and export first README.md
         id: publish_output_id 
         run: |
           
           # list them for debug
           echo "All README.md files:"
-          find ./codem_test -type f -name 'README.md'
+          find README.md
   
           # take only the first one
-            file=$(find ./codem_test -type f -name 'README.md' | head -n1)
+            file=$( find README.md )
             if [ -n "$file" ]; then
             # strip leading "./" and export
             rel=${file#./}
