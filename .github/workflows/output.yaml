@@ -27,10 +27,10 @@ jobs:
           
           # list them for debug
           echo "All README.md files:"
-          find . -type f -name 'README.md'
+          find ./codem_test -type f -name 'README.md'
   
           # take only the first one
-            file=$(find . -type f -name 'README.md' | head -n1)
+            file=$(find ./codem_test -type f -name 'README.md' | head -n1)
             if [ -n "$file" ]; then
             # strip leading "./" and export
             rel=${file#./}
