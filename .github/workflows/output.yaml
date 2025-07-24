@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Check global var
         run: echo "${{ env.GLOBAL-ENV-VAR }}"
+      - name: Check global var
+        run: echo "${{ env.LOCAL-ENV-VAR }}"
       - name: first var
         run: echo "${{ toJSON(github.event) }}"
       - name: checkout project
