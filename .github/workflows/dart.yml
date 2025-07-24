@@ -121,9 +121,9 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4 
         with:
-          name: build_apk
+          name: android_release
           path:
-            build/app/outputs/flutter-apk/**
+            build/app/outputs/flutter-apk/**.apk
             
   deploy:
      runs-on: macos-latest
