@@ -12,13 +12,18 @@ on:
      types:
       - opened
       - edited
-      
+env:
+   GLOBAL-ENV-VAR: 'variable which is available for all jobs'
 jobs:
-  env-vars:
+  env-vars:  # job name
+    env:
+        LOCAL-ENV-VAR: 'variable which is available for env-vars job'
     runs-on: ubuntu-latest
     outputs: 
         readme-file: ${{ steps.publish_output_id.outputs.readme-file-first }}
     steps:
+      - name: Check global var
+        run: echo "${{ env.GLOBAL-ENV-VAR }}"
       - name: first var
         run: echo "${{ toJSON(github.event) }}"
       - name: checkout project
