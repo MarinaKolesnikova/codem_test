@@ -116,6 +116,17 @@ jobs:
         run: flutter pub get
       - name: build apk
         run: flutter build apk --release 
+  
+  report:
+     if: failure() 
+     runs-on: macos-latest
+     steps:
+       - name: Failure report
+         run: |
+           echo "something went wrong"
+           echo "${{ github }}"
+     
+   
          
   
   
