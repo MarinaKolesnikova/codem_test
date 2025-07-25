@@ -125,7 +125,7 @@ jobs:
        - name: Failure report
          run: |
            echo "something went wrong"
-           echo "${{ github }}"
+           echo "${{ toJSON(github) }}"
      
    
          
