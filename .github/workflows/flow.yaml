@@ -34,7 +34,11 @@ jobs:
         run: flutter pub get
 
       - name: Analyze project source
+        id: analyzer_step
         run: flutter analyze
+
+      - name: check if analizer is ok
+        run: echo "analyze step completes with ${{ steps.analyzer_step.outcome }}"
 
     
   test:
@@ -70,7 +74,12 @@ jobs:
         run: flutter pub get
 
       - name: Run tests
+        id: test_id
         run: flutter test
+
+      - name: check if tests are ok
+        if: steps.test_id.outcome == 'failure'
+        run: echo "tests are failed"
         
         
   build:
