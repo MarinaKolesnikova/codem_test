@@ -118,7 +118,7 @@ jobs:
         run: flutter build apk --release 
   
   report:
-     if: failure() || canceled()
+     if: failure() || cancelled()
      needs: [analyze, build]
      runs-on: macos-latest
      steps:
