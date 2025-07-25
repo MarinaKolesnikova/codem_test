@@ -1,4 +1,4 @@
-name: Flow sequance
+name: Flow sequence
 on: workflow_dispatch
 jobs: 
   first-step:
@@ -37,7 +37,7 @@ jobs:
         run: flutter analyze
 
     
-  build:
+  test:
      runs-on: macos-latest
      steps:
       - name: Checkout Repository
@@ -71,7 +71,40 @@ jobs:
 
       - name: Run tests
         run: flutter test
+        
+        
+  build:
+    runs-on: macos-latest
+    needs: test
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Cache Flutter
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
+         key: flutter-sdk-${{ runner.os }}-3.27.4
+          
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/.pub-cache
+         key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+         restore-keys: |
+           pub-cache-${{ runner.os }}-
+          
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+         flutter-version: '3.27.4'
+         channel: 'stable'
+         cache: false
 
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      - name: Install dependencies
+        run: flutter pub get
       - name: build apk
         run: flutter build apk --release 
          
