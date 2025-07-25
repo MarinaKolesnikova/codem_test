@@ -1,7 +1,7 @@
 name: Flow sequence
 on: workflow_dispatch
 jobs: 
-  first-step:
+  analyze:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
