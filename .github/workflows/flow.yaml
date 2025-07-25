@@ -119,7 +119,7 @@ jobs:
   
   report:
      if: failure() 
-     needs: [test, build]
+     needs: [analyze, build]
      runs-on: macos-latest
      steps:
        - name: Failure report
