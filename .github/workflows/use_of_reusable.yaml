@@ -1,0 +1,14 @@
+name: Use reusable workflow
+on: workflow_dispatch
+jobs:
+  reusing:
+    runs-on: ubuntu-latest
+    steps:
+    - name: fectch project
+      uses: actions/checkout@v4
+    - name: reusing..
+      id: reusing_step
+      uses: ./.github/worflows/reusable.yaml
+    - name: checking for success
+      run: echo ${{ steps.reusing_step.conclusion }}
+      
