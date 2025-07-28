@@ -5,25 +5,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Flutter
-        run: echo "anything"
-      #   id: cache_flutter
-      #   uses: actions/cache@v3
-      #   with:
-      #    path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
-      #    key: flutter-sdk-${{ runner.os }}-3.27.4
+        id: cache_flutter
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
+         key: flutter-sdk-${{ runner.os }}-3.27.4
           
-      # - name: Cache pub dependencies
-      #   id: cache_pub
-      #   uses: actions/cache@v3
-      #   with:
-      #    path: /Users/runner/.pub-cache
-      #    key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
-      #    restore-keys: |
-      #      pub-cache-${{ runner.os }}-
+      - name: Cache pub dependencies
+        id: cache_pub
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/.pub-cache
+         key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+         restore-keys: |
+           pub-cache-${{ runner.os }}-
           
-      # - name: Set Up Flutter
-      #   uses: subosito/flutter-action@v2
-      #   with:
-      #    flutter-version: '3.27.4'
-      #    channel: 'stable'
-      #    cache: false
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+         flutter-version: '3.27.4'
+         channel: 'stable'
+         cache: false
