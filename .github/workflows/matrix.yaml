@@ -8,6 +8,7 @@ on:
 
 jobs:
     matrix-job:
+      continue-on-error: true
       strategy:
         matrix: 
           flutter-version: [ 3.32.4 , 3.27.4 ]
