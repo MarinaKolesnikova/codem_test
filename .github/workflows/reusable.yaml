@@ -1,9 +1,12 @@
-name: Reusable fetch flutter
+name: Reusable job
 on: workflow_call
 jobs:
   fetch-flutter:
     runs-on: ubuntu-latest
     steps:
+      - name: fetch project
+        uses: actions/checkout@v3
+      
       - name: Cache Flutter
         id: cache_flutter
         uses: actions/cache@v3
