@@ -55,7 +55,6 @@ jobs:
       #     android/gradle/wrapper/gradle-wrapper.properties
           
       - name: Set Up Flutter
-        if: steps.cache_flutter.outputs.cache-hit != 'true'
         uses: subosito/flutter-action@v2
         with:
          flutter-version: '3.27.4'
