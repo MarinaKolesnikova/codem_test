@@ -14,7 +14,7 @@ jobs:
           flutter-version: [ 3.32.4 , 3.27.4 ]
           operating-system: [ ubuntu-latest, macos-latest ]
           include: # include without combination
-             - flutter-version:  3.29.0
+             - flutter-version:  3.30.0
                operating-system:  macos-latest 
           exclude:
              - flutter-version:  3.27.4
