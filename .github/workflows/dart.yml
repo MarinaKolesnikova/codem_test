@@ -1,4 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
+x# This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
@@ -28,12 +28,14 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Cache Flutter
+        id: cache_flutter
         uses: actions/cache@v3
         with:
          path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
          key: flutter-sdk-${{ runner.os }}-3.27.4
           
       - name: Cache pub dependencies
+        id: cache_pub
         uses: actions/cache@v3
         with:
          path: /Users/runner/.pub-cache
@@ -53,6 +55,7 @@ jobs:
       #     android/gradle/wrapper/gradle-wrapper.properties
           
       - name: Set Up Flutter
+        if: steps.cache_flutter.outputs.cache-hit != 'true'
         uses: subosito/flutter-action@v2
         with:
          flutter-version: '3.27.4'
@@ -66,6 +69,7 @@ jobs:
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Install dependencies
+        if: steps.cache_pub.outputs.cache-hit != 'true'
         run: flutter pub get
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
