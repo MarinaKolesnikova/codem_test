@@ -1,0 +1,60 @@
+name: Matrix flow
+on: 
+  workflow_dispatch:
+  push:
+    branches: 
+    - main
+    paths-ignore: .github/workflows/*
+
+jobs:
+    matrix-job:
+      strategy:
+        matrix: 
+          flutter-version: [ 3.32.4 , 3.27.4 ]
+          operating-system: [ ubuntu-latest, macos-latest ]
+      runs-on: ${{ operating-system }}
+      steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Cache Flutter
+        id: cache_flutter
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/hostedtoolcache/flutter/stable-3.27.4-arm64
+         key: flutter-sdk-${{ runner.os }}-3.27.4
+          
+      - name: Cache pub dependencies
+        id: cache_pub
+        uses: actions/cache@v3
+        with:
+         path: /Users/runner/.pub-cache
+         key: pub-cache-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+         restore-keys: |
+           pub-cache-${{ runner.os }}- 
+           
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+         flutter-version: ${{ flutter-version }}
+         channel: 'stable'
+         cache: false
+
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      - name: Install dependencies
+        if: steps.cache_pub.outputs.cache-hit != 'true'
+        run: flutter pub get
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Analyze project source
+        run: flutter analyze
+
+      # Your project will need to have tests in test/ and a dependency on
+      # package:test for this step to succeed. Note that Flutter projects will
+      # want to change this to 'flutter test'.
+      - name: Run tests
+        continue-on-error: true
+        run: flutter test   
+
+  
