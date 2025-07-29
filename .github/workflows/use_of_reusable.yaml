@@ -8,7 +8,7 @@ jobs:
     needs: build
     uses: ./.github/workflows/reusable_deploy.yaml
     with: 
-       artifact-name: android_release
+       artifact-name: ${{ needs.build.otputs.artifact-name }}
     secrets:
       some-secret: ${{secrets.API_KEY}}
     
