@@ -21,7 +21,7 @@ jobs:
       - name: list files
         run: ls  
       - name: deploy
-        run: echo 'deloying..'
+        run: echo 'deloying.. ' ${{secrets.some-secret}}
         
           
       
