@@ -1,8 +1,16 @@
 name: Reusable job
-on: workflow_call
+on: 
+  workflow_call:
+    outputs:
+      artifact-name:
+        value: ${{ jobs.fetch-flutter.outputs.job-result }}
+
 jobs:
   fetch-flutter:
     runs-on: ubuntu-latest
+
+    outputs: 
+      job-result: ${{ steps.artifact_name_id.outputs.artifact-name }}
     steps:
       - name: fetch project
         uses: actions/checkout@v3
@@ -43,3 +51,7 @@ jobs:
           name: android_release
           path:
             build/app/outputs/flutter-apk/**.apk
+            
+      - name: write workflow result
+        id: artifact_name_id
+        run: echo "artifact-name=android_release" >> $GITHUB_OUTPUT
