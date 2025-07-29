@@ -1,0 +1,15 @@
+name: Deploy reusable workflow
+on: workflow_call
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download artifacts
+        uses: action/download-artifact@v3
+        with:
+          name: android_release
+      - name: deploy
+        run: echo 'deloying..'
+        
+          
+      
