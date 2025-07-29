@@ -1,6 +1,9 @@
 name: Use reusable workflow
 on: workflow_dispatch
 jobs:
-  reusing:
+  build:
     uses: ./.github/workflows/reusable.yaml
+  deploy:
+    uses: ./.github/workflows/reusable_deploy.yaml
+    
       
