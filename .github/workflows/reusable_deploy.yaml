@@ -1,5 +1,12 @@
 name: Deploy reusable workflow
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        type: string
+        required: false
+        description: name of deploying artifact
+        default: android_release
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -7,7 +14,9 @@ jobs:
       - name: download artifacts
         uses: action/download-artifact@v3
         with:
-          name: android_release
+          name: ${{ artifact-name }}
+      - name: list files
+        run: ls  
       - name: deploy
         run: echo 'deloying..'
         
