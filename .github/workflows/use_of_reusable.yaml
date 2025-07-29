@@ -9,13 +9,13 @@ jobs:
     needs: build
     steps: 
       - name: check ouput
-        run: echo ${{ needs.build.otputs.artifact-name }}  
+        run: echo ${{ needs.build.outputs.artifact-name }}  
     
   deploy:
     needs: build
     uses: ./.github/workflows/reusable_deploy.yaml
     with: 
-       artifact-name: ${{ needs.build.otputs.artifact-name }}
+       artifact-name: ${{ needs.build.outputs.artifact-name }}
     secrets:
       some-secret: ${{secrets.API_KEY}}
     
