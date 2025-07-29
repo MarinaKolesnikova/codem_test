@@ -27,8 +27,8 @@ runs:
         channel: 'stable'
         cache: false
          
-    - name: Install dependencies
-      if: steps.cache_pub.outputs.cache-hit != 'true'
-      run: flutter pub get
-      shell: bash         # required for run command in actions
+     - name: Install dependencies
+       if: steps.cache_pub.outputs.cache-hit != 'true'
+       run: flutter pub get
+       shell: bash         # required for run command in actions
 
