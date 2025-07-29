@@ -3,11 +3,12 @@ on: workflow_dispatch
 jobs:
   build:
     uses: ./.github/workflows/reusable.yaml
+    
   deploy:
     needs: build
     uses: ./.github/workflows/reusable_deploy.yaml
     with: 
-      artifact-name: android-release
+       artifact-name: android_release
       
     
       
