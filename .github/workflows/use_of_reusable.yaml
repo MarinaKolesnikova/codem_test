@@ -9,6 +9,7 @@ jobs:
     uses: ./.github/workflows/reusable_deploy.yaml
     with: 
        artifact-name: android_release
-      
+    secrets:
+      some-sectret: ${{secrets.API_KEY}}
     
       
