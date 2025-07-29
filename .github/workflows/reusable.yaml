@@ -61,7 +61,7 @@ jobs:
         needs: fetch-flutter
         steps:
           - name: check
-            run: echo ${{ needs.fetch-flutter.outputs.job-result }}
+            run: echo ${{ jobs.fetch-flutter.outputs.job-result }}
           
 
         
