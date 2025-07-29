@@ -10,6 +10,6 @@ jobs:
     with: 
        artifact-name: android_release
     secrets:
-      some-sectret: ${{secrets.API_KEY}}
+      some-secret: ${{secrets.API_KEY}}
     
       
