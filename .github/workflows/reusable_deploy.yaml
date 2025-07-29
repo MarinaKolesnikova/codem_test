@@ -6,7 +6,7 @@ on:
         type: string
         required: false
         description: name of deploying artifact
-        default: android_release        
+        default: android_release_1        
     secrets:
       some-secret:
         required: true
@@ -21,7 +21,7 @@ jobs:
       - name: list files
         run: ls  
       - name: deploy
-        run: echo 'deloying.. ' ${{secrets.some-secret}}
+        run: echo 'deloying.. ' ${{ inputs.artifact-name }}  ${{secrets.some-secret}}
         
           
       
