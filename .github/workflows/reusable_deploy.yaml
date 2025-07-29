@@ -6,7 +6,10 @@ on:
         type: string
         required: false
         description: name of deploying artifact
-        default: android_release
+        default: android_release        
+    secrets:
+      some-secret:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
