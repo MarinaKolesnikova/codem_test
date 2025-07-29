@@ -4,6 +4,10 @@ jobs:
   build:
     uses: ./.github/workflows/reusable.yaml
   deploy:
+    needs: build
     uses: ./.github/workflows/reusable_deploy.yaml
+    with: 
+      artifact-name: android-release
+      
     
       
