@@ -1,3 +1,4 @@
+#notice that file should have name action.yaml
 name: 'Get and cache dependencies'
 description: 'fetch and cache flutter env and dependencies'
 runs: 
