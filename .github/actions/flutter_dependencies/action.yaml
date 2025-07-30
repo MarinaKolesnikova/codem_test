@@ -52,7 +52,7 @@ runs:
        run: echo "action-status=${{job.status}}" >> $GITHUB_OUTPUT
        shell: bash 
 
-    - name: check outputs
-      run: echo ${{ steps.job-result.outputs.action-status }}
-      shell: bash
+     - name: check outputs
+       run: echo ${{ steps.job-result.outputs.action-status }}
+       shell: bash
 
