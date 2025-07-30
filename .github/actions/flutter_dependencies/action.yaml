@@ -6,6 +6,10 @@ inputs:
     description: 'Wheather dependencies should be cached'
     required: false
     default: 'true'
+outputs:
+  action-result:
+    description: 'The action result'
+    value: ${{ steps.job-result.outputs.action-status }}
 runs: 
   using: 'composite'
   steps:
@@ -41,4 +45,14 @@ runs:
        if: steps.cache_pub.outputs.cache-hit != 'true' ||  inputs.caching != 'true'
        run: flutter pub get
        shell: bash         # required for run command in actions
+
+    - name: Set job result
+      id: job-result
+      continue-on-error: true
+      run: "action-status=${{job.status}}" >> $GITHUB_OUTPUT
+      shell: bash 
+
+   - name: check outputs
+     run: echo ${{ steps.job-result.outputs.action-status }}
+     shell: bash
 
