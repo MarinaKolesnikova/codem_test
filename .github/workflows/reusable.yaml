@@ -17,6 +17,8 @@ jobs:
       
       - name: fetch dependencies
         uses: ./.github/actions/flutter_dependencies
+        with: 
+          caching: 'true'
 
       - name: Build release
         run: flutter build apk --release  
