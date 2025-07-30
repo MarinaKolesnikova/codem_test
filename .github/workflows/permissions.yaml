@@ -1,9 +1,9 @@
-name: Restricted workflow
+name: Permissions
 on: 
   workflow_dispatch:
   issues:
     types:
-      -open
+      - opened
 jobs:
   assign-label:
     runs-on: ubuntu-latest
