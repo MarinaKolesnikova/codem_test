@@ -19,7 +19,9 @@ jobs:
         uses: ./.github/actions/flutter_dependencies
         with: 
           caching: 'true'
-
+      - name: Check output
+        run: echo "output is ${{steps.action-id.outputs.action-result}}"
+     
       - name: Build release
         run: flutter build apk --release  
         
