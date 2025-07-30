@@ -49,7 +49,7 @@ runs:
      - name: Set job result
        id: job-result
        continue-on-error: true
-       run: "action-status=${{job.status}}" >> $GITHUB_OUTPUT
+       run: echo "action-status=${{job.status}}" >> $GITHUB_OUTPUT
        shell: bash 
 
     - name: check outputs
