@@ -8,7 +8,7 @@ jobs:
   assign-label:
     runs-on: ubuntu-latest
     permissions: # by default all permission granted 
-      issues: read
+      issues: write
     env: 
       TITLE: ${{ github.event.issue.title }}
     steps:
