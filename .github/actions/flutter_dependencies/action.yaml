@@ -46,13 +46,13 @@ runs:
        run: flutter pub get
        shell: bash         # required for run command in actions
 
-    - name: Set job result
-      id: job-result
-      continue-on-error: true
-      run: "action-status=${{job.status}}" >> $GITHUB_OUTPUT
-      shell: bash 
+     - name: Set job result
+       id: job-result
+       continue-on-error: true
+       run: "action-status=${{job.status}}" >> $GITHUB_OUTPUT
+       shell: bash 
 
-   - name: check outputs
-     run: echo ${{ steps.job-result.outputs.action-status }}
-     shell: bash
+    - name: check outputs
+      run: echo ${{ steps.job-result.outputs.action-status }}
+      shell: bash
 
