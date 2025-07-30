@@ -9,6 +9,8 @@ inputs:
 runs: 
   using: 'composite'
   steps:
+     - name: Inputs check
+       run: echo ${{ inputs.caching }}
      - name: Cache Flutter
        if: inputs.caching == 'true'
        id: cache_flutter
