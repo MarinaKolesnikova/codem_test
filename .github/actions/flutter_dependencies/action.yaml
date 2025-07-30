@@ -11,6 +11,7 @@ runs:
   steps:
      - name: Inputs check
        run: echo ${{ inputs.caching }}
+       shell: bash   
      - name: Cache Flutter
        if: inputs.caching == 'true'
        id: cache_flutter
