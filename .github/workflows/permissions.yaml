@@ -1,4 +1,4 @@
-name: Permissions
+name: Tag to issue (permissions)
 on: 
   workflow_dispatch:
   issues:
