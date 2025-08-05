@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: chek secrets
-         run: echo ${secrets.AWS_ROLE}
+         run: echo ${{ secrets.AWS_ROLE }}
        - name: Fetch from aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-           role-to-assume: ${env.ROLE-TO-ASSUME}
+           role-to-assume: ${{ env.ROLE-TO-ASSUME }}
            aws-region: eu-west-3
        - name: Fetch from bucket
          run: |
