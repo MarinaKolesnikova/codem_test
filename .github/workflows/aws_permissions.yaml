@@ -17,7 +17,7 @@ jobs:
        - name: Fetch from aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-           role-to-assume: ${{ env.ROLE-TO-ASSUME }}
+           role-to-assume: arn:aws:iam::609110637686:role/GitHubRole
            aws-region: eu-west-3
        - name: Fetch from bucket
          run: |
