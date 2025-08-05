@@ -4,7 +4,7 @@ env:
   ROLE-TO-ASSUME: secrets.AWS_ROLE
   BUCKET: github.codemrepo
 jobs:
-  fetch-was:   
+  fetch-aws:   
     permissions:
       id-token: write
       contents: read
@@ -14,7 +14,7 @@ jobs:
          uses: aws-actions/configure-aws-credentials@v4
          with:
            role-to-assume: env.ROLE-TO-ASSUME
-           region: eu-west-3
+           aws-region: eu-west-3
        - name: Fetch from bucket
          run: |
           aws s3 cp s3://${env.BUCKET}/key.properties ./key.properties 
