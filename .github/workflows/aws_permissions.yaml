@@ -1,11 +1,12 @@
 name: Get AWS permissions
 on: workflow_dispatch
-environment: prod
+
 env:
   ROLE-TO-ASSUME: secrets.AWS_ROLE
   BUCKET: github.codemrepo
 jobs:
-  fetch-aws:   
+  fetch-aws:  
+    environment: prod
     permissions:
       id-token: write
       contents: read
