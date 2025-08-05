@@ -1,0 +1,23 @@
+name: Get AWS permissions
+on: workflow_dispatch
+env:
+  ROLE-TO-ASSUME: secrets.AWS_ROLE
+  BUCKET: github.codemrepo
+jobs:
+  fetch-was:   
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+       - name: Fetch from aws
+         uses: aws-actions/configure-aws-credentials@v4
+         with:
+           role-to-assume: env.ROLE-TO-ASSUME
+           region: eu-west-3
+       - name: Fetch from bucket
+         run: |
+          aws s3 cp s3://${env.BUCKET}/key.properties ./key.properties 
+          cat ./key.properties 
+          
+          
