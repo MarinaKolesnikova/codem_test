@@ -1,12 +1,13 @@
 name: Get AWS permissions
 on: workflow_dispatch
 
-env:
-  ROLE-TO-ASSUME: secrets.AWS_ROLE
-  BUCKET: github.codemrepo
+
 jobs:
   fetch-aws:  
     environment: prod
+    env:
+      ROLE-TO-ASSUME: secrets.AWS_ROLE
+      BUCKET: github.codemrepo
     permissions:
       id-token: write
       contents: read
@@ -17,7 +18,7 @@ jobs:
        - name: Fetch from aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-           role-to-assume: arn:aws:iam::609110637686:role/GitHubRole
+           role-to-assume: ${{ env.ROLE-TO-ASSUME }}
            aws-region: eu-west-3
        - name: Fetch from bucket
          run: |
