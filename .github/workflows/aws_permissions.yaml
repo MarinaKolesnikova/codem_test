@@ -22,7 +22,7 @@ jobs:
            aws-region: eu-west-3
        - name: Fetch from bucket
          run: |
-          aws s3 cp s3://${env.BUCKET}/key.properties ./key.properties 
+          aws s3 cp s3://${{ env.BUCKET }}/key.properties ./key.properties 
           cat ./key.properties 
           
           
