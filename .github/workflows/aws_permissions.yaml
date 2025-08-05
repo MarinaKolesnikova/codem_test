@@ -6,7 +6,7 @@ jobs:
   fetch-aws:  
     environment: prod
     env:
-      ROLE-TO-ASSUME: secrets.AWS_ROLE
+      ROLE-TO-ASSUME: ${{ secrets.AWS_ROLE }}
       BUCKET: github.codemrepo
     permissions:
       id-token: write
